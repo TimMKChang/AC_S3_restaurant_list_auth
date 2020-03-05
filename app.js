@@ -61,6 +61,11 @@ app.use('/restaurants', require('./routes/restaurants'))
 app.use('/users', require('./routes/users'))
 app.use('/auth', require('./routes/auth'))
 
+// for any other unused routes
+app.use(function (req, res, next) {
+  res.status(404).render('error404');
+});
+
 app.listen(port, () => {
   console.log(`App is listening on localhost:${port}`)
 })

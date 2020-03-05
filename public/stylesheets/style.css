@@ -115,3 +115,21 @@ header .restaurant-title {
   font-size: 3rem;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
+.title-404-1 {
+  color: white;
+  text-align: center;
+  font-size: 10rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.title-404-1 .fa-frown {
+  font-size: 8.5rem;
+}
+
+.title-404-2 {
+  color: white;
+  text-align: center;
+  font-size: 5rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
