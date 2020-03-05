@@ -25,12 +25,17 @@
           <h2 style="display: inline-block;">Restaurant List</h2>
         </a>
 
-        <a href="/restaurants/new" class="btn btn-light">Create</a>
+        {{#if isAuthenticated}}
+        <a href="/users/logout" class="btn btn-outline-light">Logout</a>
+        {{else}}
+        <a href="/users/login" class="btn btn-outline-light">Login</a>
+        {{/if}}
+
       </div>
     </nav>
 
     <div class="banner">
-      <div class="restaurant-title text-center">Tim's Restaurant List</div>
+      <div class="restaurant-title text-center">{{#if user.name}}{{user.name}}'s {{/if}}Restaurant List</div>
     </div>
 
     <a id="toTop" class="text-center" href="#navbar"><i id="toTop-icon" class="fas fa-angle-double-up"></i></a>

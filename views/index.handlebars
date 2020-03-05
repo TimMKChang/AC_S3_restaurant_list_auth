@@ -3,7 +3,14 @@
   <div class="search-bar-outer">
     <div class="search-bar-inner">
       <form action="/restaurants">
-        <h4 class="mb-2">Search for Restaurants?</h4>
+
+        <div class="d-flex align-items-center mb-1">
+          <div class="search-title mr-2">Search for Restaurants? or</div>
+          <div>
+            <a href="/restaurants/new" class="btn btn-primary">Create</a>
+          </div>
+        </div>
+
         <div class="input-group">
           <input type="text" name="search_keyword" class="form-control" placeholder="Input restaurant name or category"
             aria-label="Restaurant Name..." value="{{search_keyword}}" aria-describedby="search-button">
@@ -44,7 +51,7 @@
 </div>
 
 <!-- restaurant list -->
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
     {{#each restaurants}}
     <div class="col-12 col-sm-6 col-md-4">

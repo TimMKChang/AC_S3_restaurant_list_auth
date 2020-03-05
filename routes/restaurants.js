@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
   }
 
   const _regex = new RegExp(search_keyword, "i");
-  Restaurant.find({ $or: [{ name: { $regex: _regex } }, { category: { $regex: _regex } }] })
+  Restaurant.find({ userId: req.user._id, $or: [{ name: { $regex: _regex } }, { category: { $regex: _regex } }] })
     .sort({ [sortField]: sortOrder })
     .lean()
     .then(restaurants => {
@@ -50,7 +50,8 @@ router.post('/', (req, res) => {
     phone: req.body.phone,
     google_map: req.body.google_map,
     rating: Number(req.body.rating).toFixed(1),
-    description: req.body.description
+    description: req.body.description,
+    userId: req.user._id
   })
 
   restaurant.save(err => {
@@ -62,7 +63,7 @@ router.post('/', (req, res) => {
 })
 // read one page
 router.get('/:id', (req, res) => {
-  Restaurant.findById(req.params.id)
+  Restaurant.findOne({ _id: req.params.id, userId: req.user._id })
     .lean()
     .then(restaurant => {
       return res.render('detail', { restaurant })
@@ -73,7 +74,7 @@ router.get('/:id', (req, res) => {
 })
 // read update page
 router.get('/:id/edit', (req, res) => {
-  Restaurant.findById(req.params.id)
+  Restaurant.findOne({ _id: req.params.id, userId: req.user._id })
     .lean()
     .then(restaurant => {
       return res.render('edit', { restaurant })
@@ -84,7 +85,7 @@ router.get('/:id/edit', (req, res) => {
 })
 // updete
 router.put('/:id', (req, res) => {
-  Restaurant.findById(req.params.id)
+  Restaurant.findOne({ _id: req.params.id, userId: req.user._id })
     .then(restaurant => {
       restaurant.name = req.body.name
       restaurant.name_en = req.body.name_en
@@ -110,7 +111,7 @@ router.put('/:id', (req, res) => {
 })
 // delete
 router.delete('/:id', (req, res) => {
-  Restaurant.findById(req.params.id)
+  Restaurant.findOne({ _id: req.params.id, userId: req.user._id })
     .then(restaurant => {
       restaurant.remove(err => {
         if (err) {

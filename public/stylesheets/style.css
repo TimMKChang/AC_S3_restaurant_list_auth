@@ -14,7 +14,7 @@ header {
   position: relative;
   z-index: -1;
   margin: -5px;
-  height: 300px;
+  height: 150px;
   background: url('https://cdn.pixabay.com/photo/2017/06/06/22/46/mediterranean-cuisine-2378758_1280.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -22,7 +22,7 @@ header {
 
 header .restaurant-title {
   position: absolute;
-  top: 20px;
+  top: -10px;
   width: 100vw;
   color: #ffffff;
   font-size: 6rem;
@@ -59,11 +59,17 @@ header .restaurant-title {
   border-radius: 8px;
   padding: 20px 30px;
   border: 0;
-  margin-top: -100px;
+  margin-top: 10px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .search-bar .search-bar-inner h4 {
+  color: #9b4b4b;
+}
+
+.search-title {
+  font-size: 1.5rem;
+  font-weight: bold;
   color: #9b4b4b;
 }
 
@@ -101,4 +107,11 @@ header .restaurant-title {
 .restaurant-category {
   color: #666666;
   font-size: 0.8rem;
+}
+
+.restaurant-show-title {
+  color: white;
+  text-align: center;
+  font-size: 3rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }

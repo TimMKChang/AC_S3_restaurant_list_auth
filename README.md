@@ -7,22 +7,16 @@ Built by
 - [MongoDB](https://www.mongodb.com/)
 - [Mongoose](https://www.npmjs.com/package/mongoose)
 - [method-override](https://www.npmjs.com/package/method-override)
+- [Passport](https://www.npmjs.com/package/passport)
+- [bcryptjs](https://www.npmjs.com/package/bcryptjs)
+- [dotenv](https://www.npmjs.com/package/dotenv)
 
 ## Project Preview
+#### Login
+![Project Preview](/public/image/restaurant_list_auth_preview.PNG)
+
 #### Show all restaurants
-![Project Preview](/public/image/restaurant_list_CRUD_preview.PNG)
-
-#### Create
-![Project Preview](/public/image/restaurant_list_CRUD_preview_2.PNG)
-
-#### Detail
-![Project Preview](/public/image/restaurant_list_CRUD_preview_3.PNG)
-
-#### Edit 
-![Project Preview](/public/image/restaurant_list_CRUD_preview_4.PNG)
-
-#### Delete
-![Project Preview](/public/image/restaurant_list_CRUD_preview_5.PNG)
+![Project Preview](/public/image/restaurant_list_auth_preview_2.PNG)
 
 ## Features
 - CRUD: Create, Read, Update, and Delete
@@ -30,17 +24,42 @@ Built by
 - Search
 - Sort
 - Rating number showed by stars (hollow, half, and solid)
-- Restaurant seeds
+- Restaurant & User seeder
+- Passport
+- bcrypt
+- Facebook login & Google login
+- Store Facebook & Google's ID & SECRET by dotenv .env
+- Partial template
+
+| Method     | URL        | Action     |
+|:----------:| ---------- | ---------- |
+| GET        | /          | homepage   |
+| GET        | /restaurants     | get all restaurants |
+| GET        | /restaurants/new | get create page |
+| GET        | /restaurants/:id | get one restaurants |
+| POST       | /restaurants     | create restaurants   |
+| GET        | /restaurants/:id/edit | get update page |
+| PUT        | /restaurants/:id | update restaurants |
+| DELETE     | /restaurants/:id | delete restaurants |
+| GET        | /users/login    | get login page   |
+| POST       | /users/login    | login   |
+| GET        | /users/register | get register page   |
+| POST       | /users/register | register   |
+| GET        | /users/logout   | logout   |
+| GET        | /auth/facebook  | login by Facebook   |
+| GET        | /auth/facebook/callback   | Facebook login callback   |
+| GET        | /auth/google    | login by Google   |
+| GET        | /auth/google/callback     | Google login callback   |
 
 ## Installing
 1. clone the project
->git clone https://github.com/TimMKChang/AC_S3_restaurant_list_CRUD.git
+>git clone https://github.com/TimMKChang/AC_S3_restaurant_list_auth.git
 2. install packages
 >npm install
-3. run seeder in /models/seeds
->node restaurantSeeder.js
+3. run Restaurant & User seeder
+>npm run seeder
 4. run the server
->npm run dev
+>npm run start
 5. check in cmd
 >App is listening on [localhost:3000](http://localhost:3000)
 
