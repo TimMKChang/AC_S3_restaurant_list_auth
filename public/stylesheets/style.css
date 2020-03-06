@@ -123,8 +123,9 @@ header .restaurant-title {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.title-404-1 .fa-frown {
+.title-404-1 .emoji {
   font-size: 8.5rem;
+  margin: 0 -2rem;
 }
 
 .title-404-2 {

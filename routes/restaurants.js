@@ -5,6 +5,10 @@ const Restaurant = require('../models/restaurant')
 const ratingStar = require('../public/javascripts/ratingStar')
 const showSort = require('../public/javascripts/showSort')
 
+// '/restaurants/*' all should be authenticated
+const { authenticated } = require('../config/auth')
+router.all('*', authenticated)
+
 // read all page
 router.get('/', (req, res) => {
 
