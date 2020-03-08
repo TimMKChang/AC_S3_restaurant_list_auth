@@ -33,7 +33,7 @@ db.once('open', () => {
     }
   ]
 
-  users.forEach(user => {
+  async function createOneUser(user) {
     const { name, email, password } = user
     const newUser = new User({
       name,
@@ -47,47 +47,70 @@ db.once('open', () => {
           throw err
         }
         newUser.password = hash
-
-        newUser
-          .save()
-          .then(user => {
-
-            const restaurant_id = users.find(element => element.email === user.email).restaurant_id
-
-            async function createOneRestaurant(id) {
-
-              const restaurant = restaurantSeeds.results.find(element => element.id === id)
-              await Restaurant.create({
-                name: restaurant.name,
-                name_en: restaurant.name_en,
-                category: restaurant.category,
-                image: restaurant.image,
-                location: restaurant.location,
-                phone: restaurant.phone,
-                google_map: restaurant.google_map,
-                rating: restaurant.rating,
-                description: restaurant.description,
-                userId: user._id
-              })
-
-            }
-
-            async function createRestaurants(ids) {
-              for (const id of ids) {
-                await createOneRestaurant(id);
-              }
-              mongoose.connection.close()
-            }
-
-            createRestaurants(restaurant_id)
-
-          })
-          .catch(err => {
-            console.log(err)
-          })
       })
     })
-  })
 
-  console.log('Seeds had been created.')
+    await newUser
+      .save()
+      .then(async user => {
+
+        const restaurant_id = users.find(element => element.email === user.email).restaurant_id
+
+        async function createOneRestaurant(id) {
+
+          const restaurant = restaurantSeeds.results.find(element => element.id === id)
+          await Restaurant.create({
+            name: restaurant.name,
+            name_en: restaurant.name_en,
+            category: restaurant.category,
+            image: restaurant.image,
+            location: restaurant.location,
+            phone: restaurant.phone,
+            google_map: restaurant.google_map,
+            rating: restaurant.rating,
+            description: restaurant.description,
+            userId: user._id
+          })
+
+        }
+
+        async function createRestaurants(ids) {
+          for (const id of ids) {
+            await createOneRestaurant(id);
+            // console.log(id)
+          }
+        }
+
+        await createRestaurants(restaurant_id)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
+  }
+
+  // async function createUsers(users) {
+  //   for (const user of users) {
+  //     await createOneUser(user);
+  //     console.log('User')
+  //   }
+  //   mongoose.connection.close()
+  // }
+
+  // createUsers(users)
+
+  // promises.all()
+  const promises = []
+
+  for (const user of users) {
+    promises.push(createOneUser(user))
+    // console.log(user.name)
+  }
+
+  Promise.all(promises)
+    .then(() => {
+      mongoose.connection.close()
+      console.log('Seeds had been created.')
+    })
+
 })
