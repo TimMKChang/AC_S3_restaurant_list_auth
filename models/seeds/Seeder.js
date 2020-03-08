@@ -41,12 +41,21 @@ db.once('open', () => {
       password,
     })
 
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(newUser.password, salt, (err, hash) => {
-        if (err) {
-          throw err
-        }
-        newUser.password = hash
+    // bcrypt.genSalt(10, (err, salt) => {
+    //   bcrypt.hash(newUser.password, salt, (err, hash) => {
+    //     if (err) {
+    //       throw err
+    //     }
+    //     newUser.password = hash
+    //   })
+    // })
+
+    newUser.password = await new Promise((resolve, reject) => {
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(password, salt, function (err, hash) {
+          if (err) reject(err)
+          resolve(hash)
+        });
       })
     })
 
