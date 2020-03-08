@@ -58,6 +58,13 @@ Built by
 >npm install
 3. run Restaurant & User seeder
 >npm run seeder
+
+| email    | password | 
+|----------|----------|
+|user1@example.com|12345678|
+|user2@example.com|12345678|
+|user3@example.com|12345678|
+
 4. run the server
 >npm run start
 5. check in cmd
