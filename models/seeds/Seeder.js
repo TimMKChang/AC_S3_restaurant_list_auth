@@ -41,7 +41,7 @@ db.once('open', () => {
       password,
     })
 
-    // restore example user data to default
+    // restore example users and restaurants to default
     let existUser
     await User.findOne({ email: email })
       .then(user => {
