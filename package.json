@@ -4,9 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node ./models/seeds/Seeder.js && node app.js",
+    "start": "start http://localhost:3000 && npm run seeder && node app.js",
     "dev": "nodemon app.js",
     "seeder": "node ./models/seeds/Seeder.js",
+    "heroku": "npm run seeder && node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

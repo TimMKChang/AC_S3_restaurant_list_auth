@@ -56,8 +56,11 @@ Built by
 >git clone https://github.com/TimMKChang/AC_S3_restaurant_list_auth.git
 2. install packages
 >npm install
-3. run Restaurant & User seeder
->npm run seeder
+
+3. run the server
+>npm run start
+
+It will run user and restaurant seeder and launch the server.
 
 | email    | password | 
 |----------|----------|
@@ -65,9 +68,7 @@ Built by
 |user2@example.com|12345678|
 |user3@example.com|12345678|
 
-4. run the server
->npm run start
-5. check in cmd
+4. check in cmd
 >App is listening on [localhost:3000](http://localhost:3000)
 
 ## Contributor
