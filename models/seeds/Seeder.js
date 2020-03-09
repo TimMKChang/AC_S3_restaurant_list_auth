@@ -41,6 +41,24 @@ db.once('open', () => {
       password,
     })
 
+    // restore example user data to default
+    let existUser
+    await User.findOne({ email: email })
+      .then(user => {
+        if (user) {
+          existUser = user
+        }
+      })
+
+    if (existUser) {
+      await Restaurant.deleteMany({ userId: existUser._id }, function (err) {
+        if (err) return console.log(err)
+      })
+      await User.deleteOne({ _id: existUser._id }, function (err) {
+        if (err) return console.log(err)
+      })
+    }
+
     // bcrypt.genSalt(10, (err, salt) => {
     //   bcrypt.hash(newUser.password, salt, (err, hash) => {
     //     if (err) {
