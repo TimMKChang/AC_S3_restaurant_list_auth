@@ -4,7 +4,7 @@ const User = require('../user')
 const restaurantSeeds = require('../../restaurant.json')
 const bcrypt = require('bcryptjs')
 
-mongoose.connect('mongodb://localhost/AC_S3_restaurant', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/AC_S3_restaurant', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 const db = mongoose.connection
 db.on('error', () => {
   console.log('mongodb error')

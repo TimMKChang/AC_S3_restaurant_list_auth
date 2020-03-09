@@ -27,7 +27,7 @@ const flash = require('connect-flash')
 app.use(flash())
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/AC_S3_restaurant', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/AC_S3_restaurant', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 const db = mongoose.connection
 db.on('error', () => {
   console.log('mongodb error')
@@ -66,6 +66,6 @@ app.use(function (req, res, next) {
   res.status(404).render('error404');
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`App is listening on localhost:${port}`)
 })
